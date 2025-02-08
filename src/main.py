@@ -2,7 +2,7 @@ from textnode import TextNode, TextType
 from htmlnode import HTMLNode
 from leafnode import LeafNode
 from parentnode import ParentNode
-from node_conversion import text_node_to_html_node
+from node_conversion import text_node_to_html_node, extract_markdown_images
 from node_split import split_nodes_delimiter
 
 def main():
@@ -34,4 +34,6 @@ def main():
     result = split_nodes_delimiter([node], "`", TextType.CODE)
     # Should give you 3 nodes: "Hello ", "world", " today"
     print(result)
+
+    extract_markdown_images("This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)")
 main()
