@@ -1,5 +1,5 @@
 import unittest
-from node_conversion import text_node_to_html_node
+from node_conversion import text_node_to_html_node, extract_markdown_images, extract_markdown_links
 from textnode import TextNode, TextType
 
 class TestTextNodeToHTMLNode(unittest.TestCase):
@@ -50,3 +50,27 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
         node = TextNode("text", "not_a_valid_type")
         with self.assertRaises(ValueError):
             text_node_to_html_node(node)
+
+class TestExtractMarkdownImages(unittest.TestCase):
+    def test_result(self):
+        text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
+        result = extract_markdown_images(text)
+        self.assertEqual(result[0], ("rick roll", "https://i.imgur.com/aKaOqIh.gif"))
+        self.assertEqual(result[1], ("obi wan", "https://i.imgur.com/fJRm4Vk.jpeg"))
+
+    def test_no_text(self):
+        text = ""
+        result = extract_markdown_images(text)
+        self.assertEqual(result, [])
+
+class TestExtractMarkdownLinks(unittest.TestCase):
+    def test_result(self):
+        text = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
+        result = extract_markdown_links(text)
+        self.assertEqual(result[0], ("to boot dev", "https://www.boot.dev"))
+        self.assertEqual(result[1], ("to youtube", "https://www.youtube.com/@bootdotdev"))
+
+    def test_no_text(self):
+        text = ""
+        result = extract_markdown_images(text)
+        self.assertEqual(result, [])
