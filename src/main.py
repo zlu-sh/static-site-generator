@@ -3,6 +3,7 @@ from htmlnode import HTMLNode
 from leafnode import LeafNode
 from parentnode import ParentNode
 from node_conversion import text_node_to_html_node
+from node_split import split_nodes_delimiter
 
 def main():
     print(TextNode("some_shit", TextType.BOLD, "hhttttt"))
@@ -28,4 +29,9 @@ def main():
     print(html1)
     print(html2)
     print(html3)
+
+    node = TextNode("Hello `world` today", TextType.TEXT)
+    result = split_nodes_delimiter([node], "`", TextType.CODE)
+    # Should give you 3 nodes: "Hello ", "world", " today"
+    print(result)
 main()
