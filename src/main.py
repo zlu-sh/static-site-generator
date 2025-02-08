@@ -2,6 +2,7 @@ from textnode import TextNode, TextType
 from htmlnode import HTMLNode
 from leafnode import LeafNode
 from parentnode import ParentNode
+from node_conversion import text_node_to_html_node
 
 def main():
     print(TextNode("some_shit", TextType.BOLD, "hhttttt"))
@@ -27,5 +28,4 @@ def main():
     print(html1)
     print(html2)
     print(html3)
-
 main()
