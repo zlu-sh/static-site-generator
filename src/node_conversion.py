@@ -3,7 +3,7 @@ from leafnode import LeafNode
 
 def text_node_to_html_node(text_node):
     if not isinstance(text_node.text_type, TextType):
-        raise Exception("node text_type must be of TextType enum")
+        raise ValueError("node text_type must be of TextType enum")
     if text_node.text_type == TextType.TEXT:
         return LeafNode(None,text_node.text)
     elif text_node.text_type == TextType.BOLD:
