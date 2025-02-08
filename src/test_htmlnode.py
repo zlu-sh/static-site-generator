@@ -4,9 +4,9 @@ from htmlnode import HTMLNode
 
 class TestHTMLNode(unittest.TestCase):
     def test_eq(self):
-        node = HTMLNode()
+        node1 = HTMLNode()
         node2 = HTMLNode()
-        self.assertEqual(node, node2)
+        self.assertEqual(node1, node2)
 
     def test_no_tag(self):
         node = HTMLNode()
@@ -23,3 +23,8 @@ class TestHTMLNode(unittest.TestCase):
     def test_no_props(self):
         node = HTMLNode()
         self.assertIsNone(node.props)
+
+    def test_eq_tag(self):
+        node1 = HTMLNode()
+        node2 = HTMLNode()
+        self.assertEqual(node1.tag, node2.tag)
